@@ -5,31 +5,20 @@ from src.classes.entry_creator import EntryCreator
 class File(Entry):
     def __init__(self, name: str, path: str = None, content: str | None = None):
         super().__init__(name, path, FILE)
-        self.__split_name: tuple[str, str] = None
-        self.__file_name: str = None
-        self.__extension: str = None
         self.__content: str = None
-
-        self.split_name: tuple[str, str] = name
         self.content: str = content
 
     @property
     def split_name(self) -> tuple[str, str]:
-        return self.__split_name
+        return File.trim(self)
     
-    @split_name.setter
-    def split_name(self, split_name: str) -> None:
-        if self.not_empty(split_name) and self.split_name is None:
-            self.__split_name = File.trim(self)
-            self.__file_name, self.__extension = self.__split_name
-
     @property
     def file_name(self) -> str:
-        return self.__file_name
+        return self.split_name[0]
     
     @property
     def extension(self) -> str:
-        return self.__extension
+        return self.split_name[1]
 
     @property
     def content(self) -> str:

@@ -14,7 +14,7 @@ from src.classes.directory import Directory
 from src.classes.config_creator import ConfigCreator
 
 # main application class that defines the UI and core logic of the app
-class Protor(App):
+class Radix(App):
     # path to the CSS file that styles the application
     #TODO: CSS_PATH = ConfigCreator.get_style_file() # replace this line at the end
     CSS_PATH = '../../style/protor.tcss'

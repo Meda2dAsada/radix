@@ -1,12 +1,10 @@
 #import sys
 #sys.setrecursionlimit(n)
-#COMMENT: protor(proyect - creator)
-from src.components.protor import Protor
+from src.components.radix import Radix
 from src.classes.directory import Directory
 from src.classes.json_reader import JsonReader
 from src.classes.file import File
 from src.classes.entry_creator import EntryCreator
-
 
 
 # # Crear directorio raíz
@@ -16,4 +14,7 @@ from src.classes.entry_creator import EntryCreator
 
 # r = r'C:\Users\ASADA\Desktop\py_projects\protor\json\constants.json'
 
-Protor().run()
+#TODO: add dynamic configuration system to all components with JsonReader class
+#TODO: fix issues with the hashing of the unhashable type: 'EntryScreen'
+#TODO: add themes for app
+Radix().run()
