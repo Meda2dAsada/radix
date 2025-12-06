@@ -17,7 +17,7 @@ from src.classes.config_creator import ConfigCreator
 class Radix(App):
     # path to the CSS file that styles the application
     #TODO: CSS_PATH = ConfigCreator.get_style_file() # replace this line at the end
-    CSS_PATH = '../../style/protor.tcss'
+    #CSS_PATH = '../../style/radix.tcss'
 
     def __init__(self):
         # initializes the UI components and a default file
@@ -28,7 +28,7 @@ class Radix(App):
         self.__constants_button = Button('Constants', id='constants', classes='option_button')
         self.__configs_button = Button('Configs', id='configs', classes='option_button')        
         self.__exit_button = Button('Exit', id='exit', classes='option_button')
-        #self.__file = File('protor.py')
+        #self.__file = File('radix.py')
 
     def __on_input_screen(self, name: str):
         # callback after receiving input from input screen; currently not implemented
@@ -63,7 +63,7 @@ class Radix(App):
             with Container(classes='background'):
                 yield Header(True)
                 with Center():
-                    yield Label('Welcome again to Protor, is good to see you.')
+                    yield Label('Welcome again to Radix, is good to see you.')
                 with Center():
                     with Middle():
                         yield self.__new_proyect_button

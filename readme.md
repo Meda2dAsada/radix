@@ -1,47 +1,134 @@
+# 🌳 Radix
 
-# Radix
-> “Start every project from its Radix.”
+> "Start every project from its Radix."
 
-# Proyect setup
-### **Obligatory**: You can install Textual via PyPI, with the following command
+A foundational template application built with the [Textual](https://github.com/Textualize/textual) TUI framework, designed to serve as a starting point for terminal-based user interface projects.
 
-```bash 
-pip install textual
+---
+
+## 🚀 Getting Started
+
+### Installation
+
+**1. Install Core Dependencies (Required)**
+
+Install Textual with syntax highlighting support powered by Tree-sitter:
+
+```bash
+pip install textual "textual[syntax]"
 ```
-### **Obligatory if you want syntax highlight:**
-```bash 
-pip install "textual[syntax]"
-```
 
-### **Optional**: If you plan on developing Textual apps, you should also install textual developer tools
+**2. Install Development Tools (Optional)**
 
-```bash 
+For development and debugging workflows, install the Textual developer tools:
+
+```bash
 pip install textual-dev
 ```
 
-## Textual app with Nuitka
+---
 
-### **Optional**: If you want to convert this proyect in to an app
+## 📦 Building a Executable
 
-### First install Nuitka:
-```bash 
+You can compile this project into a single, portable executable using [Nuitka](https://nuitka.net/).
+
+### Build Instructions
+
+**1. Install Nuitka**
+
+```bash
 pip install nuitka
 ```
-### Exec this commanda to convert in to a binary:
-```bash 
-nuitka main.py --standalone --onefile --include-package=textual --include-package=rich
+
+**2. Compile the Application**
+
+Due to Textual's dynamic loading of Tree-sitter language parsers for syntax highlighting, all language packages must be explicitly included during compilation.
+
+Choose the appropriate command for your platform:
+
+#### Windows
+```bash
+nuitka main.py --onefile \
+--windows-icon-from-ico=icons/icon.ico \
 ```
 
-# Windows Issues
+#### macOS
+```bash
+nuitka main.py --standalone \
+--macos-create-app-bundle \
+--macos-app-icon=icons/icon.icns \
+```
 
-## The Windows long path when attempting to access or create files or folders with paths exceeding the 260-character limit imposed by Windows. 
+#### Linux (No Icon)
+```bash
+nuitka main.py --onefile \
+```
 
-### To enable this feature on Windows, you need to modify the registry:
+**Add these common flags to all platforms:**
 
-1. Open the Registry Editor (`regedit`).
-2. Navigate to the following path:
-   HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem**
-3. Locate the corresponding entry (e.g., "LongPathsEnabled" or another relevant key).
-4. Set its value from 0 to 1 (hexadecimal) to enable the feature.
+```bash
+--output-dir=build \
+--output-filename=radix \
+--include-package=Pygments \
+--include-package=rich \
+--include-package=textual \
+--include-package=tree_sitter \
+--include-package=tree_sitter_bash \
+--include-package=tree_sitter_css \
+--include-package=tree_sitter_go \
+--include-package=tree_sitter_html \
+--include-package=tree_sitter_java \
+--include-package=tree_sitter_javascript \
+--include-package=tree_sitter_json \
+--include-package=tree_sitter_markdown \
+--include-package=tree_sitter_python \
+--include-package=tree_sitter_regex \
+--include-package=tree_sitter_rust \
+--include-package=tree_sitter_sql \
+--include-package=tree_sitter_toml \
+--include-package=tree_sitter_xml \
+--include-package=tree_sitter_yaml
+```
 
-**Warning:** Editing the Windows Registry can affect system stability. Proceed with caution and consider backing up the registry before making any changes.
+**Output:** The compiled executable will be generated in the `build` directory:
+- Windows: `radix.exe`
+- macOS: `radix.app` (application bundle)
+- Linux: `radix`
+
+---
+
+## ⚙️ Platform-Specific Configuration
+
+### Windows: Enable Long Path Support
+
+Windows restricts file paths to 260 characters by default, which can cause issues when compiling projects with deeply nested dependencies. To prevent build failures, enable Long Path support:
+
+**Steps:**
+
+1. Open the Registry Editor by running `regedit` as Administrator
+2. Navigate to: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem`
+3. Locate the `LongPathsEnabled` entry
+4. Change its value from `0` to `1` (Hexadecimal)
+5. Restart your computer for changes to take effect
+
+> **⚠️ Warning:** Modifying the Windows Registry can affect system stability. Always create a backup before making changes.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+This project uses [Textual](https://github.com/Textualize/textual), which is also licensed under the MIT License.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+## 📧 Contact
+
+For questions or support, please open an issue in this repository.
+
+---
+
+**Built with [Textual](https://github.com/Textualize/textual) • A modern framework for building TUI applications**
